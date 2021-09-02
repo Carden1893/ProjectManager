@@ -1,4 +1,4 @@
-package com.cgm.ProjectManager.model.Ticket;
+package com.cgm.ProjectManager.model.ticket;
 
 import org.springframework.stereotype.Service;
 

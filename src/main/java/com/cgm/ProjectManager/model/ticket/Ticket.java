@@ -1,6 +1,7 @@
-package com.cgm.ProjectManager.model.vacation;
+package com.cgm.ProjectManager.model.ticket;
 
-import com.cgm.ProjectManager.model.employee.Employee;
+
+import com.cgm.ProjectManager.model.projects.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,25 +15,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Entity
-@Table(name = "vacation")
+@Table(name = "ticket")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vacation {
+public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String vacationId;
+    private String ticketId;
 
-    private Date begin;
-    private Date end;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employeeId", referencedColumnName = "employeeId")
-    private Employee employee;
+    @JoinColumn(name = "projectId", referencedColumnName = "projectId")
+    private Project project;
 
 }

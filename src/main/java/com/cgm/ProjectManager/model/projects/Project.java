@@ -1,5 +1,6 @@
 package com.cgm.ProjectManager.model.projects;
 
+import com.cgm.ProjectManager.model.ticket.Ticket;
 import com.cgm.ProjectManager.model.employee.Employee;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,10 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "project")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -42,4 +47,7 @@ public class Project {
             inverseJoinColumns = @JoinColumn(name = "employeeId")
     )
     private Set<Employee> projectEmployees;
+
+    @OneToMany(mappedBy = "project")
+    private Set<Ticket> projectTickets = new HashSet<>();
 }

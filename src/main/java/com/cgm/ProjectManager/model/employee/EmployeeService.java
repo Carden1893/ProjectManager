@@ -26,6 +26,11 @@ public class EmployeeService {
         return employeeRepository.findById(employeeId).get();
     }
 
+    public void deleteEmployeeById(String employeeId) {
+        if (employeeRepository.existsById(employeeId))
+            employeeRepository.deleteById(employeeId);
+    }
+
 
 
 }

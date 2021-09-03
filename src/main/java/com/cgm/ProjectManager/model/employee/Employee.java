@@ -1,6 +1,7 @@
 package com.cgm.ProjectManager.model.employee;
 
-import com.cgm.ProjectManager.model.datatypes.EmployeeType;
+import com.cgm.ProjectManager.model.datatypes.Unit;
+import com.cgm.ProjectManager.model.employeeProjects.EmployeeProjects;
 import com.cgm.ProjectManager.model.projects.Project;
 import com.cgm.ProjectManager.model.vacation.Vacation;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,13 +34,12 @@ public class Employee {
     private String firstName;
     private String lastName;
     private Double capacityLeft;
-    private EmployeeType employeeType;
+    private Unit employeeType;
     private boolean active;
 
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "projectEmployees")
-    private Set<Project> employeeProjects;
+    @OneToMany(mappedBy = "employee")
+    private Set<EmployeeProjects> employeeProjects;
 
     @OneToMany(mappedBy = "employee")
     private Set<Vacation> employeeVacations = new HashSet<>();

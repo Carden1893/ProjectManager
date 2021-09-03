@@ -1,6 +1,6 @@
 package com.cgm.ProjectManager.model.datatypes;
 
-public enum EmployeeType {
+public enum Unit {
     BE("Backend"),
     FE("Frontend"),
     QA("Quality Assurance");
@@ -8,7 +8,7 @@ public enum EmployeeType {
 
     public final String description;
 
-    EmployeeType(String description) {
+    Unit(String description) {
         this.description = description;
     }
 }

@@ -31,6 +31,11 @@ public class EmployeeService {
             employeeRepository.deleteById(employeeId);
     }
 
+    public void addEmployee(Employee employee){
+        employeeRepository.save(employee);
+    }
 
-
+    public void addEmployees(List<Employee> employees) {
+        employeeRepository.saveAll(employees);
+    }
 }

@@ -34,20 +34,4 @@ public class TicketController {
         return ticketService.getTicket(ticketId);
     }
 
-    @DeleteMapping(path = "/delete/{ticketId}")
-    public void deleteTicket(@PathVariable("ticketId") String ticketId){
-        ticketService.deleteTicketById(ticketId);
-    }
-
-    @PutMapping(path = "/add/{ticket}")
-    public void addTicket(@RequestBody Ticket ticket){
-        ticketService.addTicket(ticket);
-    }
-
-    @PutMapping(path = "/add/{ticketList}")
-    public void addTickets(@RequestBody List<Ticket> tickets){
-        ticketService.addTickets(tickets);
-    }
-
-
 }

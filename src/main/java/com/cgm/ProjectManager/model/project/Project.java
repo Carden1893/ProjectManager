@@ -1,9 +1,8 @@
-package com.cgm.ProjectManager.model.projects;
+package com.cgm.ProjectManager.model.project;
 
-import com.cgm.ProjectManager.model.datatypes.Unit;
-import com.cgm.ProjectManager.model.employeeProjects.EmployeeProjects;
-import com.cgm.ProjectManager.model.ticket.Ticket;
 import com.cgm.ProjectManager.model.employee.Employee;
+import com.cgm.ProjectManager.model.employeeProjects.EmployeeProject;
+import com.cgm.ProjectManager.model.ticket.Ticket;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,15 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -34,7 +28,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String projectId;
+    private Long projectId;
 
     private String projectName;
     private Date startDate;
@@ -45,8 +39,12 @@ public class Project {
 
 
     @OneToMany(mappedBy = "project")
-    private Set<EmployeeProjects> projectEmployees;
+    private Set<EmployeeProject> projectEmployees;
 
     @OneToMany(mappedBy = "project")
     private Set<Ticket> projectTickets = new HashSet<>();
+
+    public void addProjectEmployee(EmployeeProject employeeProject) {
+        this.projectEmployees.add(employeeProject);
+    }
 }

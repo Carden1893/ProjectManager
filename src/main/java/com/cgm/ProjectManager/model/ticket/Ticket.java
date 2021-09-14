@@ -1,7 +1,7 @@
 package com.cgm.ProjectManager.model.ticket;
 
 
-import com.cgm.ProjectManager.model.projects.Project;
+import com.cgm.ProjectManager.model.project.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String ticketId;
+    private Long ticketId;
 
     private String issueKey;
 

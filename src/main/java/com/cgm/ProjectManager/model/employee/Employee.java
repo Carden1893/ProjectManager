@@ -1,10 +1,8 @@
 package com.cgm.ProjectManager.model.employee;
 
 import com.cgm.ProjectManager.model.datatypes.Unit;
-import com.cgm.ProjectManager.model.employeeProjects.EmployeeProjects;
-import com.cgm.ProjectManager.model.projects.Project;
+import com.cgm.ProjectManager.model.employeeProjects.EmployeeProject;
 import com.cgm.ProjectManager.model.vacation.Vacation;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.HashSet;
@@ -30,7 +27,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String employeeId;
+    private Long employeeId;
     private String firstName;
     private String lastName;
     private Double capacityLeft;
@@ -39,14 +36,12 @@ public class Employee {
 
 
     @OneToMany(mappedBy = "employee")
-    private Set<EmployeeProjects> employeeProjects;
+    private Set<EmployeeProject> employeeProjects;
 
     @OneToMany(mappedBy = "employee")
     private Set<Vacation> employeeVacations = new HashSet<>();
 
-
-
-
-
-
+    public void addEmployeeProjects(EmployeeProject employeeProject){
+        this.employeeProjects.add(employeeProject);
+    }
 }

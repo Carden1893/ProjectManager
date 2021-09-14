@@ -26,10 +26,10 @@ public class Vacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String vacationId;
+    private Long vacationId;
 
-    private Date begin;
-    private Date end;
+    private Date vacationBegin;
+    private Date vacationEnd;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employeeId", referencedColumnName = "employeeId")

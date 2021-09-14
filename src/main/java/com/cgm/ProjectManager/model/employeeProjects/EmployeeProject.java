@@ -2,7 +2,7 @@ package com.cgm.ProjectManager.model.employeeProjects;
 
 
 import com.cgm.ProjectManager.model.employee.Employee;
-import com.cgm.ProjectManager.model.projects.Project;
+import com.cgm.ProjectManager.model.project.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,14 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "employeeProjects")
+@Table(name = "employeeProject")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeProjects {
+public class EmployeeProject implements Serializable {
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)

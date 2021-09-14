@@ -22,7 +22,7 @@ public class projectTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String remainingTimeId;
+    private Long remainingTimeId;
 
     private Unit unit;
 

@@ -22,11 +22,11 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployee(String employeeId) {
+    public Employee getEmployee(Long employeeId) {
         return employeeRepository.findById(employeeId).get();
     }
 
-    public void deleteEmployeeById(String employeeId) {
+    public void deleteEmployeeById(Long employeeId) {
         if (employeeRepository.existsById(employeeId))
             employeeRepository.deleteById(employeeId);
     }

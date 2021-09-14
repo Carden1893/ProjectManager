@@ -1,20 +1,15 @@
 package com.cgm.ProjectManager.model.project;
 
 
+import com.cgm.ProjectManager.model.datatypes.dataObjects.MultipleEmployeesForProjectObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -43,12 +38,12 @@ public class ProjectController {
         projectService.deleteProjectById(projectId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, headers = "action=addProject")
+    @RequestMapping(method = RequestMethod.POST, headers = "action=addProject")
     public void addProject(@RequestBody Project project){
         projectService.addProject(project);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, headers = "action=addProjects")
+    @RequestMapping(method = RequestMethod.POST, headers = "action=addProjects")
     public void addProjects(@RequestBody List<Project> projects){
         projectService.addProjects(projects);
     }
@@ -59,6 +54,18 @@ public class ProjectController {
                                         @RequestParam(value = "capacity") Double capacity){
         projectService.assignEmployeeToProject(employeeId, projectId, capacity);
     }
+
+    @RequestMapping(method = RequestMethod.POST, headers = "action=assignMultipleEmployeesToProject")
+    public void assignMultipleEmployeesToProject(@RequestBody MultipleEmployeesForProjectObject multipleEmployeesForProjectObject) {
+        Long projectId = multipleEmployeesForProjectObject.getProjectId();
+        HashMap<Long,Double> employeesAndCapacitites = multipleEmployeesForProjectObject.getEmployeesAndCapacities();
+
+        employeesAndCapacitites.forEach((employeeId,capacity) -> {
+            projectService.assignEmployeeToProject(employeeId, projectId, capacity);
+        });
+    }
+
+
 
 
 }

@@ -1,6 +1,6 @@
 package com.cgm.ProjectManager.model.projectTime;
 
-import com.cgm.ProjectManager.model.datatypes.Unit;
+import com.cgm.ProjectManager.model.datatypes.enums.Unit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

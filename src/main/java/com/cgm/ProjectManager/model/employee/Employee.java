@@ -1,6 +1,6 @@
 package com.cgm.ProjectManager.model.employee;
 
-import com.cgm.ProjectManager.model.datatypes.Unit;
+import com.cgm.ProjectManager.model.datatypes.enums.Unit;
 import com.cgm.ProjectManager.model.employeeProjects.EmployeeProject;
 import com.cgm.ProjectManager.model.vacation.Vacation;
 import lombok.AllArgsConstructor;

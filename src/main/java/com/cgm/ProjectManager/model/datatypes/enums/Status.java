@@ -1,4 +1,4 @@
-package com.cgm.ProjectManager.model.datatypes;
+package com.cgm.ProjectManager.model.datatypes.enums;
 
 public enum Status {
 

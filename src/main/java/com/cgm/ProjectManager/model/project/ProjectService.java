@@ -3,6 +3,7 @@ package com.cgm.ProjectManager.model.project;
 import com.cgm.ProjectManager.model.employee.Employee;
 import com.cgm.ProjectManager.model.employee.EmployeeService;
 import com.cgm.ProjectManager.model.employeeProjects.EmployeeProject;
+import com.cgm.ProjectManager.model.employeeProjects.EmployeeProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,13 @@ public class ProjectService {
 
     private final EmployeeService employeeService;
 
+    private final EmployeeProjectService employeeProjectService;
+
     @Autowired
-    public ProjectService(ProjectRepository projectRepository, EmployeeService employeeService) {
+    public ProjectService(ProjectRepository projectRepository, EmployeeService employeeService, EmployeeProjectService employeeProjectService) {
         this.projectRepository = projectRepository;
         this.employeeService = employeeService;
+        this.employeeProjectService = employeeProjectService;
     }
 
 
@@ -48,6 +52,7 @@ public class ProjectService {
         EmployeeProject employeeProject = new EmployeeProject(employee, project, capacity);
         employee.addEmployeeProjects(employeeProject);
         project.addProjectEmployee(employeeProject);
+        employeeProjectService.saveEmployeeProject(employeeProject);
     }
 
     public void updateProject(Project project){

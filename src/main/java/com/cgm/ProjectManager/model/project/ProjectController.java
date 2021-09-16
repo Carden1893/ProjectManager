@@ -65,7 +65,20 @@ public class ProjectController {
         });
     }
 
+    @RequestMapping(method = RequestMethod.POST, headers = "action=unassignEmployeeFromProject")
+    public void unassignEmployeeFromProject(@RequestParam(value = "employeeId") Long employeeId,
+                                            @RequestParam(value = "projectId") Long projectId) {
+        projectService.unassignEmployeeFromProject(employeeId, projectId);
+    }
 
+    @RequestMapping(method = RequestMethod.POST, headers = "action=unassignMultipleEmployeesFromProject")
+    public void unassignMultipleEmployeesToProject(@RequestBody MultipleEmployeesForProjectObject multipleEmployeesForProjectObject) {
+        Long projectId = multipleEmployeesForProjectObject.getProjectId();
+        HashMap<Long,Double> employeesAndCapacitites = multipleEmployeesForProjectObject.getEmployeesAndCapacities();
 
+        employeesAndCapacitites.forEach((employeeId,capacity) -> {
+            projectService.unassignEmployeeFromProject(employeeId, projectId);
+        });
+    }
 
 }

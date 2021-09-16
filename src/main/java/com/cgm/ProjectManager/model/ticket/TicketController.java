@@ -30,7 +30,7 @@ public class TicketController {
     }
 
     @GetMapping(path = "/{ticketId}")
-    public Ticket getTicketById(@PathVariable("ticketId") String ticketId) {
+    public Ticket getTicketById(@PathVariable("ticketId") Long ticketId) {
         return ticketService.getTicket(ticketId);
     }
 

@@ -34,7 +34,8 @@ public class Project {
     private Date startDate;
     private Date endDate;
     private Date hardeningBorder;
-    private String filterString;
+    private String query;
+    private String queryForTicketsWithoutSubtasks;
 
 
 
@@ -47,4 +48,10 @@ public class Project {
     public void addProjectEmployee(EmployeeProject employeeProject) {
         this.projectEmployees.add(employeeProject);
     }
+
+    public void unassignEmployee(EmployeeProject employeeProject) {
+        this.projectEmployees.remove(employeeProject);
+    }
+
+
 }

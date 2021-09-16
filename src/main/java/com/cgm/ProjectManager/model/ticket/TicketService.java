@@ -1,5 +1,8 @@
 package com.cgm.ProjectManager.model.ticket;
 
+import com.atlassian.jira.bc.issue.IssueService;
+import com.atlassian.jira.component.ComponentAccessor;
+import com.atlassian.jira.user.ApplicationUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +23,11 @@ public class TicketService {
         return ticketRepository.findAll();
     }
 
-    public Ticket getTicket(String ticketId) {
+    public Ticket getTicket(Long ticketId) {
         return ticketRepository.getById(ticketId);
     }
 
-    public void deleteTicketById(String ticketId) {
+    public void deleteTicketById(Long ticketId) {
         ticketRepository.deleteById(ticketId);
     }
 
@@ -36,4 +39,12 @@ public class TicketService {
         ticketRepository.saveAll(tickets);
     }
 
+
+    public void getIssues(){
+
+    }
+
+    public List<Ticket> getTicketsForProjectId(Long projectId) {
+        return ticketRepository.findAllByProjectId(projectId);
+    }
 }

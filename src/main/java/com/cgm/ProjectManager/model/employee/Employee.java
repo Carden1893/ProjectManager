@@ -44,4 +44,8 @@ public class Employee {
     public void addEmployeeProjects(EmployeeProject employeeProject){
         this.employeeProjects.add(employeeProject);
     }
+
+    public void unassignFromProject(EmployeeProject employeeProject) {
+        this.employeeProjects.remove(employeeProject);
+    }
 }

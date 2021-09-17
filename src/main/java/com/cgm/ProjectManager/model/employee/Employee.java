@@ -1,6 +1,5 @@
 package com.cgm.ProjectManager.model.employee;
 
-import com.cgm.ProjectManager.model.datatypes.enums.Unit;
 import com.cgm.ProjectManager.model.employeeProjects.EmployeeProject;
 import com.cgm.ProjectManager.model.vacation.Vacation;
 import lombok.AllArgsConstructor;
@@ -31,7 +30,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private Double capacityLeft;
-    private Unit employeeType;
+    private String unit;
     private boolean active;
 
 

@@ -35,7 +35,8 @@ public class ProjectController {
 
     @RequestMapping(method = RequestMethod.DELETE, headers = "action=deleteProject")
     public void deleteProject(@RequestParam(value = "projectId") Long projectId){
-        projectService.deleteProjectById(projectId);
+        Project project = projectService.getProject(projectId);
+        projectService.deleteProjectById(project);
     }
 
     @RequestMapping(method = RequestMethod.POST, headers = "action=addProject")

@@ -1,6 +1,5 @@
 package com.cgm.ProjectManager.model.projectTime;
 
-import com.cgm.ProjectManager.model.datatypes.enums.Unit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class projectTime {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long remainingTimeId;
 
-    private Unit unit;
+    private String unit;
 
     private int remainingTime;
 

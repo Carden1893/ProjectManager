@@ -41,22 +41,22 @@ public class ProjectService {
 
     /**
      * Deletes a Project, related Employees and Tickets
-     * @param projectId
+     * @param project
      */
-    public void deleteProjectById(Long projectId) {
+    public void deleteProjectById(Project project) {
         //Get all Employees who are involved in the Project and unassign them all afterwards
-        List<Employee> projectEmployees = employeeProjectService.getProjectEmployees(projectId);
+        List<Employee> projectEmployees = employeeProjectService.getProjectEmployees(project);
         projectEmployees.forEach(employee -> {
-            EmployeeProject employeeProject = employeeProjectService.findByEmployeeIdAndProjectId(employee.getEmployeeId(), projectId);
+            EmployeeProject employeeProject = employeeProjectService.findByEmployeeAndProject(employee, project);
             employee.unassignFromProject(employeeProject);
         });
         //Get all Tickets related ot the Project and delete them afterwards
-        List<Ticket> ticketList = ticketService.getTicketsForProjectId(projectId);
+        List<Ticket> ticketList = ticketService.getTicketsForProjectId(project);
         ticketList.forEach(ticket -> {
             ticketService.deleteTicketById(ticket.getTicketId());
         });
         //After all related Data were deleted the project gets deleted
-        projectRepository.deleteById(projectId);
+        projectRepository.deleteById(project.getProjectId());
     }
 
     /**
@@ -100,10 +100,10 @@ public class ProjectService {
     public void unassignEmployeeFromProject(Long employeeId, Long projectId) {
         Employee employee = employeeService.getEmployee(employeeId);
         Project project = getProject(projectId);
-        EmployeeProject employeeProject = employeeProjectService.findByEmployeeIdAndProjectId(employeeId, projectId);
+        EmployeeProject employeeProject = employeeProjectService.findByEmployeeAndProject(employee, project);
         employee.unassignFromProject(employeeProject);
         project.unassignEmployee(employeeProject);
-        employeeProjectService.unassignEmployeeFromProject(employeeId,projectId);
+        employeeProjectService.unassignEmployeeFromProject(employee,project);
     }
 
 

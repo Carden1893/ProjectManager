@@ -22,24 +22,24 @@ public class EmployeeProjectService {
         employeeProjectRepository.saveAndFlush(employeeProject);
     }
 
-    public EmployeeProject findByEmployeeIdAndProjectId(Long employeeId, Long projectId){
-        return employeeProjectRepository.findByEmployeeIdAndProjectId(employeeId, projectId);
+    public EmployeeProject findByEmployeeAndProject(Employee employee, Project project){
+        return employeeProjectRepository.findByEmployeeAndProject(employee, project);
     }
 
     public void changeEmployeeCapacityForProject(Employee employee, Project project, double newCapacity){
-        EmployeeProject employeeProject = findByEmployeeIdAndProjectId(employee.getEmployeeId(), project.getProjectId());
+        EmployeeProject employeeProject = findByEmployeeAndProject(employee, project);
         employeeProject.setCapacity(newCapacity);
         employeeProjectRepository.saveAndFlush(employeeProject);
     }
 
-    public void unassignEmployeeFromProject(Long employeeId, Long projectId){
-        EmployeeProject employeeProjectToDelete = employeeProjectRepository.findByEmployeeIdAndProjectId(employeeId, projectId);
+    public void unassignEmployeeFromProject(Employee employee, Project project){
+        EmployeeProject employeeProjectToDelete = employeeProjectRepository.findByEmployeeAndProject(employee, project);
         employeeProjectRepository.delete(employeeProjectToDelete);
     }
 
 
-    public List<Employee> getProjectEmployees(Long projectId) {
-        List<EmployeeProject> allByProjectId = employeeProjectRepository.findAllByProjectId(projectId);
+    public List<Employee> getProjectEmployees(Project project) {
+        List<EmployeeProject> allByProjectId = employeeProjectRepository.findAllByProject(project);
         List<Employee> projectEmployeeList = new ArrayList<>();
         allByProjectId.forEach(employeeProject -> {
             projectEmployeeList.add(employeeProject.getEmployee());

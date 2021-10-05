@@ -48,7 +48,8 @@ public class Ticket {
     @JoinColumn(name = "projectId", referencedColumnName = "projectId")
     private Project project;
 
-    public Ticket(String issueKey, IssueType issueType, Long originalEstimate, Long remainingEstimate, Long timeSpent, String summary, Status status ,Project project) {
+    public Ticket(String issueKey, IssueType issueType, Long originalEstimate, Long remainingEstimate,
+                  Long timeSpent, String summary, Status status ,Project project) {
         this.issueKey = issueKey;
         this.issueType = issueType;
         this.originalEstimate = originalEstimate;

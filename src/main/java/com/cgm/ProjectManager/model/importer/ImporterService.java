@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class ImporterService {
@@ -84,16 +85,20 @@ public class ImporterService {
                                                 summary,
                                                 status,
                                                 project);
-            /*ticketToSave.setIssueKey(issueKeyString);
+            ticketToSave.setIssueKey(issueKeyString);
             ticketToSave.setIssueType(issueType);
             ticketToSave.setOriginalEstimate(originalEstimate);
             ticketToSave.setRemainingEstimate(remainingEstimate);
             ticketToSave.setTimeSpent(timeSpent);
             ticketToSave.setSummary(summary);
-*/
-            ticketService.addTicket(ticketToSave);
+
+            if (ticketService.ticketAlreadyImported(ticketToSave.getIssueKey())){
+                ticketService.deleteTicketByIssueKey(ticketToSave.getIssueKey());
+                ticketService.addTicket(ticketToSave);
+            } else {
+                ticketService.addTicket(ticketToSave);
+            }
         });
     }
 
-    String abc = "";
 }
